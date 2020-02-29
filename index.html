@@ -1,13 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./static/styles.css">
 </head>
+
 <body>
-    <h1>createMediaStreamSource example</h1>
-    <input type="range" min="1" max="40">
-<script src="./dist/bundle.js"></script>
+    <div class="container">
+        <h1>JS Pedalboard</h1>
+        <div class="effects-container">
+            <div class="effect-box">
+                <div class="effect-box__title">
+                    <div>01</div>
+                    <div class="separator"></div>
+                    <div>Distortion</div>
+                </div>
+                <div class="effect-box__input">
+                    <span>Gain</span>
+                    <input type="range" name="" id="">
+                </div>
+                <div class="effect-box__input">
+                    <span>Mix</span>
+                    <input type="range" name="" id="">
+                </div>
+                <button class="effect-box__button">TURN ON</button>
+            </div>
+
+            <div class="effect-box">
+                <div class="effect-box__title">
+                    <div>02</div>
+                    <div class="separator"></div>
+                    <div>Tremolo</div>
+                </div>
+                <div class="effect-box__input">
+                    <span>Speed</span>
+                    <input type="range" name="" id="">
+                </div>
+                <div class="effect-box__input">
+                    <span>Mix</span>
+                    <input type="range" name="" id="">
+                </div>
+                <button class="effect-box__button">TURN ON</button>
+            </div>
+
+            <div class="effect-box">
+                <div class="effect-box__title">
+                    <div>03</div>
+                    <div class="separator"></div>
+                    <div>Delay</div>
+                </div>
+                <span>Delay</span>
+                <button class="effect-box__button">TURN ON</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="./dist/bundle.js"></script>
 </body>
+
 </html>
