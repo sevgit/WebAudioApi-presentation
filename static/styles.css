@@ -32,6 +32,22 @@ body {
     background-color: var(--wye-black);
     align-content: center;
     justify-content: stretch;
+    grid-gap: 15px;
+}
+
+.btn {
+    border: 2px solid var(--wye-red);
+    margin: auto;
+    padding: 5px 8px;
+    background: transparent;
+    color: var(--wye-red);
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+}
+
+.top-controls {
+    display: grid;
+    justify-content: center;
 }
 
 .effects-container {
@@ -80,6 +96,7 @@ body {
     background: transparent;
     color: var(--wye-red);
     font-family: Oswald, sans-serif;
+    text-transform: uppercase;
 }
 
 .separator {

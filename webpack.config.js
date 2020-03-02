@@ -10,6 +10,11 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+        {
+          test: /\.mp3?$/,
+          use: 'file-loader',
+        },
+
     ],
   },
   resolve: {

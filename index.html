@@ -11,7 +11,10 @@
 
 <body>
     <div class="container">
-        <h1>JS Pedalboard</h1>
+        <div class="top-controls">
+            <h1>JS Pedalboard</h1>
+            <div><button id="mixer-play-button" class="btn">PLAY</button></div>
+        </div>
         <div class="effects-container">
             <div class="effect-box">
                 <div class="effect-box__title">
@@ -21,13 +24,9 @@
                 </div>
                 <div class="effect-box__input">
                     <span>Gain</span>
-                    <input type="range" name="" id="">
+                    <input type="range" min="10" max="200" name="" id="distortion-gain">
                 </div>
-                <div class="effect-box__input">
-                    <span>Mix</span>
-                    <input type="range" name="" id="">
-                </div>
-                <button class="effect-box__button">TURN ON</button>
+                <button id="distortion-button" class="effect-box__button">TURN ON</button>
             </div>
 
             <div class="effect-box">
@@ -38,28 +37,22 @@
                 </div>
                 <div class="effect-box__input">
                     <span>Speed</span>
-                    <input type="range" name="" id="">
+                    <input type="range" name="" id="tremolo-speed" min="0" max="100">
                 </div>
-                <div class="effect-box__input">
-                    <span>Mix</span>
-                    <input type="range" name="" id="">
-                </div>
-                <button class="effect-box__button">TURN ON</button>
+                <button id="tremolo-button" class="effect-box__button">TURN ON</button>
             </div>
 
             <div class="effect-box">
                 <div class="effect-box__title">
                     <div>03</div>
                     <div class="separator"></div>
-                    <div>Delay</div>
+                    <div>Reverb</div>
                 </div>
-                <span>Delay</span>
-                <button class="effect-box__button">TURN ON</button>
+                <span>Nashville reverb</span>
+                <button id="reverb-button" class="effect-box__button">TURN ON</button>
             </div>
         </div>
-
     </div>
     <script src="./dist/bundle.js"></script>
 </body>
-
 </html>
