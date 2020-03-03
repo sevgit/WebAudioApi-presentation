@@ -17,6 +17,7 @@ body {
     font-family: Oswald, sans-serif;
     color: white;
     text-transform: uppercase;
+    position:relative;
 }
 
 .center-grid {
@@ -29,10 +30,18 @@ body {
     min-width: 100%;
     min-height: 100vh;
     display: grid;
-    background-color: var(--wye-black);
+    /* background-color: var(--wye-black); */
     align-content: center;
     justify-content: stretch;
     grid-gap: 15px;
+}
+
+.background-canvas {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
 }
 
 .btn {

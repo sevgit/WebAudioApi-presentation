@@ -10,6 +10,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@logue/reverb": "^0.2.2",
         "audio-effects": "^1.2.4",
         "jquery": "^3.4.1"
     },
