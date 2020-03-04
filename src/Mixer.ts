@@ -159,7 +159,6 @@ export default class Mixer implements IEffects{
         }
 
         if (this.analyser) {
-            this.analyser.connect(this.audioContext.destination); // needed?
             this.analyzerFn();
         }
     }
