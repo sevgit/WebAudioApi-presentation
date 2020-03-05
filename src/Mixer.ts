@@ -1,4 +1,4 @@
-import {  Distortion, Tremolo } from 'audio-effects';
+import { Distortion, Tremolo } from 'audio-effects';
 import * as Reverb from '@logue/reverb';
 
 export enum Effects {
@@ -18,7 +18,7 @@ export interface IEffects {
     reverb: IEffect;
 }
 
-export default class Mixer implements IEffects{
+export default class Mixer implements IEffects {
     // AudioContext
     public audioContext = new AudioContext();
     public MP3Buffer: AudioBuffer;
@@ -29,16 +29,20 @@ export default class Mixer implements IEffects{
     // Effects
     public distortion: IEffect = { status: false, effect: new Distortion(this.audioContext) };
     public tremolo: IEffect = { status: false, effect: new Tremolo(this.audioContext) };
-    public reverb: IEffect = { status: false, effect: { node: new Reverb.default(this.audioContext, {
-        decay: 5,                 // Amount of IR (Inpulse Response) decay. 0~100
-        delay: 0,                 // Delay time o IR. (NOT delay effect) 0~100 [sec] 
-        filterFreq: 2200,         // Filter frequency. 20~5000 [Hz]
-        filterQ: 1,               // Filter quality. 0~10
-        filterType: 'lowpass',    // Filter type. 'bandpass' etc. See https://developer.mozilla.org/en-US/docs/Web/API/BiquadFilterNode/type .
-        mix: 0.5,                 // Dry (Original Sound) and Wet (Effected sound) raito. 0~1
-        reverse: false,           // Reverse IR.
-        time: 25                   // Time length of IR. 0~50 [sec]
-      }) }};
+    public reverb: IEffect = {
+        status: false, effect: {
+            node: new Reverb.default(this.audioContext, {
+                decay: 5,                 // Amount of IR (Inpulse Response) decay. 0~100
+                delay: 0,                 // Delay time o IR. (NOT delay effect) 0~100 [sec] 
+                filterFreq: 2200,         // Filter frequency. 20~5000 [Hz]
+                filterQ: 1,               // Filter quality. 0~10
+                filterType: 'lowpass',    // Filter type. 'bandpass' etc. See https://developer.mozilla.org/en-US/docs/Web/API/BiquadFilterNode/type .
+                mix: 0.5,                 // Dry (Original Sound) and Wet (Effected sound) raito. 0~1
+                reverse: false,           // Reverse IR.
+                time: 25                   // Time length of IR. 0~50 [sec]
+            })
+        }
+    };
 
     constructor(canvas?: HTMLCanvasElement) {
         if (canvas) {
@@ -46,7 +50,7 @@ export default class Mixer implements IEffects{
             this.analyser = this.audioContext.createAnalyser();
 
             // Paint canvas
-        this.fillCanvasBackground();
+            this.fillCanvasBackground();
         }
     }
 
@@ -81,18 +85,18 @@ export default class Mixer implements IEffects{
         this.audioContext.resume();
         if (navigator.mediaDevices) {
             console.log('getUserMedia supported.');
-            navigator.mediaDevices.getUserMedia({audio: true})
-            .then(stream => {
-                // Create a MediaStreamAudioSourceNode
-                this.sourceNode = this.audioContext.createMediaStreamSource(stream)
-                this.updateSignalChain();
-                console.log('con')
-            })
-            .catch(function(err) {
-                console.log('The following gUM error occured: ' + err);
-            });
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    // Create a MediaStreamAudioSourceNode
+                    this.sourceNode = this.audioContext.createMediaStreamSource(stream)
+                    this.updateSignalChain();
+                    console.log('con')
+                })
+                .catch(function (err) {
+                    console.log('The following gUM error occured: ' + err);
+                });
         } else {
-           console.log('getUserMedia not supported on your browser!');
+            console.log('getUserMedia not supported on your browser!');
         }
     }
 
@@ -128,7 +132,7 @@ export default class Mixer implements IEffects{
 
     private updateSignalChain = () => {
         this.disconnectAllNodes();
-        const effects = [ this.distortion, this.tremolo]
+        const effects = [this.distortion, this.tremolo]
         let lastEffect: IEffect;
         effects.map(node => {
             if (node.status && lastEffect) {
@@ -140,22 +144,22 @@ export default class Mixer implements IEffects{
                 lastEffect = node;
             }
         });
-        
+
         if (lastEffect) {
             if (this.reverb.status) {
                 this.reverb.effect.node.connect(lastEffect.effect.node).connect(this.audioContext.destination);
             } else {
                 lastEffect.effect.node.connect(this.audioContext.destination);
             }
-            
+
             lastEffect.effect.node.connect(this.analyser);
         } else {
             this.sourceNode.connect(this.audioContext.destination);
             this.sourceNode.connect(this.analyser);
-            
+
             if (this.reverb.status) {
                 this.reverb.effect.node.connect(this.sourceNode).connect(this.audioContext.destination);
-            } 
+            }
         }
 
         if (this.analyser) {
