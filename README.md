@@ -23,6 +23,7 @@ Currently, you need to serve the `index.html` file through a server so it doesn'
 
 - Strip out jQuery (not really needed)
 - Strip out TypeScript (may lure out curious people with an extra learning curve?)
+- Move .mp3 files to static folder
 - Add more effects
 - Allow more values to be changed on each effect (i.e tone on distortion, depth on tremolo)
 - Tests!
